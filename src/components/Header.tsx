@@ -7,8 +7,7 @@ const Header: React.FC = () => {
         href="/"
         className="w-24 h-24 rounded-full border-4 border-[#A2D135] flex items-center justify-center flex-col -mt-2 bg-zinc-800 shadow-lg"
       >
-        <span className="text-sm font-semibold">Fresh Food Factory</span>
-        <span className="text-xs font-bold">FRESSE</span>
+        <span className="text-sm font-semibold">Sama Salaatti</span>
       </a>
 
       <h1 className="text-3xl font-black tracking-widest mt-6">
