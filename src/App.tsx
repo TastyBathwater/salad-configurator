@@ -3,8 +3,6 @@ import Footer from "./components/Footer"
 import BowlSeletion from "./components/BowlSelection"
 import BaseSelection from "./components/BaseSelection"
 
-
-
 function App() {
 
   return (
