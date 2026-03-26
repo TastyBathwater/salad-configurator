@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 
-const CenterBowl: FC = () => {
+const CenterBowl: React.FC = () => {
   return (
     <div className="flex-1 flex flex-col items-center justify-center min-h-[400px] mt-4 lg:mt-0">
       {/* Button Row on top */}
