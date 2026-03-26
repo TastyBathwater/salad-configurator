@@ -7,6 +7,7 @@ const CenterBowl: FC = () => {
       <div className="flex gap-3 mb-6 items-center">
         <button className="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
           Salaatti
+            Salaatti
         </button>
         <button className="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
           Rahka
