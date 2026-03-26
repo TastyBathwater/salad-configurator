@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React from "react";
 
-const IngredientSection: FC = () => {
+const IngredientSection: React.FC = () => {
   return (
     <div className="bg-zinc-800 rounded-[3rem] p-8 text-white w-full shadow-lg">
       {/* Search Field */}
@@ -16,7 +16,6 @@ const IngredientSection: FC = () => {
       <div className="flex flex-wrap gap-3">
         <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full"></span>
         Vegetables
-        </span>
         <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full">
           Proteins
         </span>
