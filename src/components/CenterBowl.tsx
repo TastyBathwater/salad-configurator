@@ -6,6 +6,7 @@ const CenterBowl: FC = () => {
       {/* Button Row on top */}
       <div className="flex gap-3 mb-6 items-center">
         <button className="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
+          Salaatti
             Salaatti
         </button>
         <button className="px-4 py-2 bg-gray-100 rounded-full hover:bg-gray-200 transition-colors">
@@ -17,6 +18,7 @@ const CenterBowl: FC = () => {
           </svg>
         </button>
       </div>
+
       {/* Big Bowl */}
       <div className="w-80 h-80 rounded-full border-[12px] border-gray-200 bg-gray-50 flex items-center justify-center shadow-inner relative">
         {/* Bowl content can be added here later */}
