@@ -6,6 +6,10 @@ interface Bowl {}
 interface Category {}
 interface Ingredient {}
 
+interface Bowl {}
+interface Category {}
+interface Ingredient {}
+
 export function Configurator() {
 
     const [bowls, setBowls] = useState<Bowl[]>([]);
