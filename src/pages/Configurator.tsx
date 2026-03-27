@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import CenterBowl  from '../components/CenterBowl';
-import { getBowls } from '../services/api';
-import { getCategories } from '../services/api';
+import { getBowls, getCategories, getIngredients } from '../services/api';
 
 interface Bowl {}
 interface Category {}
@@ -19,12 +18,14 @@ export function Configurator() {
 
     useEffect(() => {
         async function fetchData() {
-        const [fetchedBowls, fetchedCategories] = await Promise.all([
+        const [fetchedBowls, fetchedCategories, fetchedIngredients] = await Promise.all([
             getBowls(),
             getCategories(),
+            getIngredients(),
         ]);
             setBowls(fetchedBowls);
             setCategories(fetchedCategories);
+            setIngredients(fetchedIngredients);
         }
         fetchData();
     }, []);
