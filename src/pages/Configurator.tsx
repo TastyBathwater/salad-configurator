@@ -6,14 +6,9 @@ import BaseSelection from "../components/BaseSelection"
 import SummaryBar from '../components/SummaryBar';
 import IngredientSection from '../components/IngredientSection';
 import CenterBowl from '../components/CenterBowl';
+import type { Bowl, Category, Ingredient } from '../types/';
 
-interface Bowl {}
-interface Category {}
-interface Ingredient {}
 
-interface Bowl {}
-interface Category {}
-interface Ingredient {}
 
 export function Configurator() {
 
@@ -39,7 +34,7 @@ export function Configurator() {
         <div className="container mx-auto px-4 py-8">
             <main className="flex-1 max-w-6xl w-full mx-auto p-6 flex flex-col gap-8 mt-4">
                 <div className="flex flex-col lg:flex-row gap-6 justify-between items-stretch">
-                    <BowlSeletion />
+                    <BowlSeletion bowls={bowls}/>
                     <CenterBowl />
                     <BaseSelection />
                 </div>
