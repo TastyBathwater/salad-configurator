@@ -1,15 +1,15 @@
-import React, { FC } from "react";
+import React from "react";
 import { Link } from 'react-router-dom';
 
-const Header: FC = () => {
+const Header: React.FC = () => {
     return (
-        <header className="bg-zinc-800 text-white w-full p-4">
+        <header className="bg-zinc-800 text-white w-full h-32 flex justify-between items-start px-8 pt-4">
             <div className="flex items-center gap-2">
                 <Link to="/" className="w-12 h-12 rounded-full bg-gray-600">
                 </Link>
                 <div>
-                    <span className="text-sm font-semibold">Free</span>
-                    <span className="text-xs font-bold">FRESS</span>
+                    <span className="text-sm font-semibold">Sama</span>
+                    <span className="text-xs font-bold">Salaatti</span>
                 </div>
             </div>
             <h1 className="text-3xl font-black mt-4">

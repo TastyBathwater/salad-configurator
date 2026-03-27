@@ -1,5 +1,4 @@
-import React from 'react';
-import { CenterBowl } from '../components/CenterBowl';
+import CenterBowl  from '../components/CenterBowl';
 
 export function Configurator() {
     return (
