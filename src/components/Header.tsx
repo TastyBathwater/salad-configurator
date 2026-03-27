@@ -15,9 +15,14 @@ const Header: FC = () => {
             <h1 className="text-3xl font-black mt-4">
                 BOWL - LASKURI
             </h1>
+             <div className="bg-[#A2D135] text-black rounded-b-3xl rounded-t-xl px-6 py-4 flex flex-col gap-2 min-w-[200px] shadow-md">
+                 <span>Menu Item 1</span>
+                 <span>Menu Item 2</span>
+                 <span>Menu Item 3</span>
+             </div>
             <div className="bg-[#A2D135] text-black rounded p-2 mt-4 flex gap-4">
                 <Link to="/" className="hover:opacity-80">Configurator</Link>
-                <Link to="/community" className="hover:opacity-80">Community</Link>
+                <Link to="/community" className="hover:opacity-80">Saved recipes</Link>
                 <Link to="/print" className="hover:opacity-80">Print</Link>
             </div>
         </header>
