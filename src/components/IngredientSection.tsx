@@ -1,36 +1,22 @@
-import React from "react";
+import React from 'react';
+import type { Category, Ingredient } from '../types/';
 
-const IngredientSection: React.FC = () => {
-  return (
-    <div className="bg-zinc-800 rounded-[3rem] p-8 text-white w-full shadow-lg">
-      {/* Search Field */}
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Search ingredients..."
-          className="rounded-full px-6 py-3 text-black outline-none w-64 border-2 border-transparent focus:border-[#A2D135]"
-        />
-      </div>
+interface IngredientSectionProps {
+    categories: Category[];
+    ingredients: Ingredient[];
+}
 
-      {/* Category Pill Placeholders */}
-      <div className="flex flex-wrap gap-3">
-        <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full"></span>
-        Vegetables
-        <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full">
-          Proteins
-        </span>
-        <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full">
-          Grains
-        </span>
-        <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full">
-          Sauces
-        </span>
-        <span className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full">
-          Toppings
-        </span>
-      </div>
-    </div>
+const IngredientSection: React.FC<IngredientSectionProps> = ({ categories, ingredients }) => {
+    return (
+        <div className="bg-zinc-800 rounded-[3rem] p-6 text-white w-full">
+            <h2 className="text-lg font-semibold mb-4">Ingredients</h2>
+            {categories.map(category => (
+                <div key={category.id}>
+                    <h3>{category.name}</h3>
+                </div>
+            ))}
+        </div>
     );
-};
+}
 
 export default IngredientSection;
