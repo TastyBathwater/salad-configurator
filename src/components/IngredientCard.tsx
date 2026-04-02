@@ -1,27 +1,39 @@
-export interface Ingredient {
-  id: number;
-  name: string;
-  diets: ("G" | "L" | "V")[];
+import React from 'react';
+import useIngredientStore from '../store/useIngredientStore';
+import type { Ingredient } from '../types/';
+
+interface IngredientCardProps {
+    ingredient: Ingredient;
 }
 
-interface Props {
-  ingredient: Ingredient;
-}
+const IngredientCard: React.FC<IngredientCardProps> = ({ ingredient }) => {
+    const { addIngredient } = useIngredientStore();
 
-const IngredientCard: React.FC<Props> = ({ ingredient }) => {
-  return (
-    <div className="p-4 border rounded shadow text-center">
-      <div>{ingredient.name}</div>
+    const handleAddIngredient = () => {
+        addIngredient(ingredient);
+    };
 
-      <div className="flex gap-2 mt-2 flex-wrap justify-center">
-        {ingredient.diets.map((diet) => (
-          <span key={diet} className="text-white text-xs font-bold px-2 py-1 rounded-full bg-gray-500">
-            {diet}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+    return (
+        <div className="bg-white rounded-lg shadow-md p-4 hover:shadow-lg transition-shadow">
+            <h3 className="font-semibold text-lg mb-2">{ingredient.name}</h3>
+            {ingredient.price && (
+                <p className="text-green-600 font-bold">{ingredient.price.toFixed(2)} €</p>
+            )}
+            {ingredient.diets && ingredient.diets.length > 0 && (
+                <div className="flex gap-1 mt-2">
+                    {ingredient.diets.includes('vegetarian') && (
+                        <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">🌱</span>
+                    )}
+                </div>
+            )}
+            <button
+                onClick={handleAddIngredient}
+                className="mt-3 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors"
+            >
+                Add to Bowl
+            </button>
+        </div>
+    );
 };
 
 export default IngredientCard;
