@@ -30,3 +30,5 @@ export const useIngredientStore = create<IngredientStore>((set) => ({
     //placeholder shiz
   },
 }));
+
+export default useIngredientStore;
