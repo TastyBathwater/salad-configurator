@@ -10,9 +10,8 @@ type Props = {
 const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
   const [searchQuery,setSearchQuery] = useState("");
   const filteredIngredients = ingredients.filter((ingredient) =>
-  ingredient.name.toLowerCase().includes(searchQuery.yoLowerCase()));
+  ingredient.name.toLowerCase().includes(searchQuery.toLowerCase()));
   const [activeCategory, setActiveCategory] = useState<number | "all">("all");
-  const filteredIngredients =
   activeCategory === "all"
     ? ingredients
     : ingredients.filter(
@@ -63,7 +62,6 @@ const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
           filteredIngredients.map((ingredient) => (
             <div key={ingredient.id} className="mt-4">
               <IngredientCard
-                ingredient={ingredient}
                 categories={categories}
                 ingredients={filteredIngredients}
               />
