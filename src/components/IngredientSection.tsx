@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import type { Category, Ingredient } from "../types";
 import IngredientCard from "./IngredientCard";
 
@@ -11,6 +11,13 @@ const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
   const [searchQuery,setSearchQuery] = useState("");
   const filteredIngredients = ingredients.filter((ingredient) =>
   ingredient.name.toLowerCase().includes(searchQuery.yoLowerCase()));
+  const [activeCategory, setActiveCategory] = useState<number | "all">("all");
+  const filteredIngredients =
+  activeCategory === "all"
+    ? ingredients
+    : ingredients.filter(
+        (ingredient) => ingredient.categoryId === activeCategory
+      );
   return (
     <div className="bg-zinc-800 rounded-[3rem] p-8 text-white w-full shadow-lg">
       {/* Search Field */}
@@ -42,6 +49,7 @@ const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
         {categories.map((category) => (
           <button
             key={category.id}
+            onClick={() => setActiveCategory(category.id)}
             className="bg-[#A2D135] text-black font-bold px-6 py-2 rounded-full"
           >
             {category.name}
