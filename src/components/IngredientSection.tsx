@@ -8,6 +8,9 @@ type Props = {
 };
 
 const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
+  const [searchQuery,setSearchQuery] = useState("");
+  const filteredIngredients = ingredients.filter((ingredient) =>
+  ingredient.name.toLowerCase().includes(searchQuery.yoLowerCase()));
   const [activeCategory, setActiveCategory] = useState<number | "all">("all");
   const filteredIngredients =
   activeCategory === "all"
@@ -22,8 +25,23 @@ const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
         <input
           type="text"
           placeholder="Search ingredients..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
           className="rounded-full px-6 py-3 text-black outline-none w-64 border-2 border-transparent focus:border-[#A2D135]"
         />
+        {/* Show clear button if search has text */}
+        {searchQuery && (
+          <button onClick={() => setSearchQuery("")}
+          className ="ml-2 text-gray-400 hover:text-white"
+          >
+            ✕ Clear
+          </button>
+        )}
+      </div>
+       
+       {/* Show results count */}
+      <div className="text-sm text-gray-400 mb-3">
+        {filteredIngredients.length} ingredient(s) found
       </div>
 
       {/* Category Buttons (all categories included) */}
@@ -39,14 +57,23 @@ const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
         ))}
       </div>
 
-      {/* Ingredient Grid */}
+       {/* Ingredient Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div className="mt-4">
-          <IngredientCard
-            categories={categories}
-            ingredients={filteredIngredients}
-          />
-        </div>
+        {filteredIngredients.length > 0 ? (
+          filteredIngredients.map((ingredient) => (
+            <div key={ingredient.id} className="mt-4">
+              <IngredientCard
+                ingredient={ingredient}
+                categories={categories}
+                ingredients={filteredIngredients}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="col-span-full text-center py-8 text-gray-400">
+            No ingredients found matching "{searchQuery}"
+          </div>
+        )}
       </div>
     </div>
   );
