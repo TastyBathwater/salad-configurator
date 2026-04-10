@@ -11,10 +11,10 @@ interface IngredientStore {
   clearSelection: () => void;
 
   addIngredient: (item: Ingredient) => void;
-  removeIngredient: (id: string) => void;
+  removeIngredient: (id: number) => void; // Changed from string to number to match Ingredient id
 }
 
-export const useIngredientStore = create<IngredientStore>((set) => ({
+export const useIngredientStore = create<IngredientStore>((set, get) => ({
   slots: {},
   baseType: 1,
   selectedBowl: null,
@@ -24,10 +24,64 @@ export const useIngredientStore = create<IngredientStore>((set) => ({
   clearSelection: () => set({ slots: {}, selectedBowl: null, baseType: 1 }),
 
   addIngredient: (item) => {
-    //placeholder shiz
+    set((state) => {
+      
+      if (item.categoryId === 6) {
+        console.log('Adding base ingredient:', item.name);
+        return {
+          slots: { ...state.slots, "base": item }
+        };
+      }
+      
+      
+      const slotCount = state.selectedBowl?.slot_count || 0;
+      
+      
+      if (slotCount === 0) {
+        console.warn('No bowl selected or bowl has no slots');
+        return state;
+      }
+      
+      
+      const newSlots = { ...state.slots };
+      
+      for (let i = 1; i <= slotCount; i++) {
+        const slotKey = `slot-${i}`;
+        if (!state.slots[slotKey]) {
+          
+          newSlots[slotKey] = item;
+          console.log(`Added ${item.name} to ${slotKey}`);
+          return { slots: newSlots };
+        }
+      }
+      
+      console.warn('No empty slots available');
+      return state;
+    });
   },
+
   removeIngredient: (id) => {
-    //placeholder shiz
+    set((state) => {
+      const newSlots = { ...state.slots };
+      let found = false;
+      
+      
+      for (const [slotKey, ingredient] of Object.entries(newSlots)) {
+        if (ingredient?.id === id) {
+          newSlots[slotKey] = null;
+          found = true;
+          console.log(`Removed ingredient from ${slotKey}`);
+          break;
+        }
+      }
+      
+      if (!found) {
+        console.warn(`Ingredient with id ${id} not found`);
+        return state;
+      }
+      
+      return { slots: newSlots };
+    });
   },
 }));
 
