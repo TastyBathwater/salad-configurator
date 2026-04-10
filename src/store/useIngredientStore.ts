@@ -11,7 +11,7 @@ interface IngredientStore {
   clearSelection: () => void;
 
   addIngredient: (item: Ingredient) => void;
-  removeIngredient: (id: number) => void; // Changed from string to number to match Ingredient id
+  removeIngredient: (id: number) => void;
 }
 
 export const useIngredientStore = create<IngredientStore>((set, get) => ({
@@ -25,7 +25,7 @@ export const useIngredientStore = create<IngredientStore>((set, get) => ({
 
   addIngredient: (item) => {
     set((state) => {
-      
+    
       if (item.categoryId === 6) {
         console.log('Adding base ingredient:', item.name);
         return {
@@ -36,19 +36,16 @@ export const useIngredientStore = create<IngredientStore>((set, get) => ({
       
       const slotCount = state.selectedBowl?.slot_count || 0;
       
-      
       if (slotCount === 0) {
         console.warn('No bowl selected or bowl has no slots');
         return state;
       }
-      
       
       const newSlots = { ...state.slots };
       
       for (let i = 1; i <= slotCount; i++) {
         const slotKey = `slot-${i}`;
         if (!state.slots[slotKey]) {
-          
           newSlots[slotKey] = item;
           console.log(`Added ${item.name} to ${slotKey}`);
           return { slots: newSlots };
@@ -63,19 +60,16 @@ export const useIngredientStore = create<IngredientStore>((set, get) => ({
   removeIngredient: (id) => {
     set((state) => {
       const newSlots = { ...state.slots };
-      let found = false;
       
+      const slotKeyToRemove = Object.keys(newSlots).find(
+        (key) => newSlots[key]?.id === id
+      );
       
-      for (const [slotKey, ingredient] of Object.entries(newSlots)) {
-        if (ingredient?.id === id) {
-          newSlots[slotKey] = null;
-          found = true;
-          console.log(`Removed ingredient from ${slotKey}`);
-          break;
-        }
-      }
-      
-      if (!found) {
+      if (slotKeyToRemove) {
+        const removedIngredient = newSlots[slotKeyToRemove];
+        newSlots[slotKeyToRemove] = null;
+        console.log(`Removed ${removedIngredient?.name} from ${slotKeyToRemove}`);
+      } else {
         console.warn(`Ingredient with id ${id} not found`);
         return state;
       }
