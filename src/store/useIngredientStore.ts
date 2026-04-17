@@ -10,6 +10,7 @@ interface IngredientStore {
   addIngredient: (item: Ingredient) => void;
   removeIngredient: (id: number) => void;
 }
+
 export const useIngredientStore = create<IngredientStore>((set, get) => ({
   slots: {},
   baseType: 1,
@@ -48,13 +49,16 @@ export const useIngredientStore = create<IngredientStore>((set, get) => ({
           return { slots: newSlots };
         }
       }
+      
       console.warn('No empty slots available');
       return state;
     });
   },
+
   removeIngredient: (id) => {
     set((state) => {
       const newSlots = { ...state.slots };
+      
       const slotKeyToRemove = Object.keys(newSlots).find(
         (key) => newSlots[key]?.id === id
       );
