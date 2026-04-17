@@ -10,12 +10,13 @@ type Props = {
 const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<number | "all">("all");
-   const searchedIngredients = ingredients.filter((ingredient) =>
+  const searchedIngredients = ingredients.filter((ingredient) =>
     ingredient.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
   const filteredIngredients = activeCategory === "all"
     ? searchedIngredients
     : searchedIngredients.filter((ingredient) => ingredient.categoryId === activeCategory);
+
   return (
     <div className="bg-zinc-800 rounded-[3rem] p-8 text-white w-full shadow-lg">
       {/* Search Field */}
