@@ -76,6 +76,15 @@ const Header: React.FC = () => {
                     >
                         Print
                     </Link>
+                    <button
+                    onClick={() => {
+                        setIsMenuOpen(false);
+                        setIsLoginOpen(true);
+                    }}
+                    className="text-left hover:opacity-80 py-2 px-4 rounded hover:bg-green-600 hover:text-white transition-colors"
+                    >
+                        Kirjaudu sisään
+                    </button>
                 </div>
             )}
              <LoginModal 
