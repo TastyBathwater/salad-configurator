@@ -13,10 +13,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin }) => 
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        console.log('Login clicked');
+
+
         if (onLogin) {
             onLogin(email, password);
         }
-        // Optionally clear form and close
+
         setEmail('');
         setPassword('');
         onClose();
