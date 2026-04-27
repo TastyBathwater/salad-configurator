@@ -4,11 +4,15 @@ import useIngredientStore from "../store/useIngredientStore";
 import { calculateTotalWeight } from "../utils/calculations";
 
 const SummaryBar: React.FC = () => {
-    const { slots, removeIngredient } = useIngredientStore();
+    const slots = useIngredientStore((state) => state.slots);
+    console.log("SLOTS IN SUMMARYBAR:", slots);
+    const removeIngredient = useIngredientStore((state) => state.removeIngredient);
+
     const activeIngredients = Object.values(slots).filter(
-        (ingredient): ingredient is import("../types").Ingredient => ingredient !== null
+        (ingredient): ingredient is import("../types").Ingredient => ingredient != null
     );
     const totalWeight = calculateTotalWeight(activeIngredients);
+
     return (
          <div className="bg-zinc-800 rounded-[3rem] p-8 text-white w-full flex flex-col md:flex-row gap-8 shadow-xl">
          <div className="flex-1">
