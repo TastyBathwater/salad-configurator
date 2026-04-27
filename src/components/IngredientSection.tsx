@@ -71,20 +71,10 @@ const IngredientSection: React.FC<Props> = ({ categories, ingredients }) => {
 
        {/* Ingredient Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {filteredIngredients.length > 0 ? (
-          filteredIngredients.map((ingredient) => (
-            <div key={ingredient.id} className="mt-4">
               <IngredientCard
                 categories={categories}
                 ingredients={filteredIngredients}
               />
-            </div>
-          ))
-        ) : (
-          <div className="col-span-full text-center py-8 text-gray-400">
-            No ingredients found matching "{searchQuery}"
-          </div>
-        )}
       </div>
     </div>
   );

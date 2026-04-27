@@ -1,16 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import useIngredientStore from "../store/useIngredientStore";
+import { calculateTotalWeight } from "../utils/calculations";
 
 const SummaryBar: React.FC = () => {
     const { slots, removeIngredient } = useIngredientStore();
     const activeIngredients = Object.values(slots).filter(
         (ingredient): ingredient is import("../types").Ingredient => ingredient !== null
     );
-    const totalWeight = activeIngredients.reduce(
-        (sum, ingredient) => sum + (ingredient.weight_grams || 0),
-        0
-    );
+    const totalWeight = calculateTotalWeight(activeIngredients);
     return (
          <div className="bg-zinc-800 rounded-[3rem] p-8 text-white w-full flex flex-col md:flex-row gap-8 shadow-xl">
          <div className="flex-1">
@@ -30,7 +28,7 @@ const SummaryBar: React.FC = () => {
                                         onClick={() => removeIngredient(ingredient.id)}
                                         className="bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center hover:bg-red-600 transition-colors"
                                     >
-                                        ×
+                                        x
                                     </button>
                                 </div>
                             ))}
