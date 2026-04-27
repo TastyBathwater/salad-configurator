@@ -37,11 +37,8 @@ const SummaryBar: React.FC = () => {
                 </div>
             </div>
 
-            <div className="flex-1 flex flex-col justify-center items-center gap-6">
-                <div className="text-center">
-                    <p className="text-sm text-gray-400">Total items</p>
-                    <p className="text-2xl font-bold">{activeIngredients.length}</p>
-                </div>
+            <div className="bg-white text-black font-black text-2xl py-3 w-32 rounded-full shadow-md text-center">
+                {activeIngredients.length} {activeIngredients.length === 1 ? "item" : "items"}
             </div>
 
             <div className="bg-white text-black font-black text-2xl py-3 w-32 rounded-full mb-2 shadow-md text-center">
