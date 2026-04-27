@@ -16,7 +16,7 @@ export const useIngredientStore = create<IngredientStore>((set, get) => ({
   baseType: 1,
   selectedBowl: null,
   setBaseType: (id) => set({ baseType: id }),
-  setBowl: (bowl) => set({ selectedBowl: bowl }),
+  setBowl: (bowl) => set({ selectedBowl: bowl, slots: {} }),
   clearSelection: () => set({ slots: {}, selectedBowl: null, baseType: 1 }),
   addIngredient: (item) => {
     console.log('Adding ingredient:', item.name);

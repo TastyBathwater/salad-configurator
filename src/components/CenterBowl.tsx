@@ -1,7 +1,7 @@
 import useIngredientStore from '../store/useIngredientStore';
 
 export function CenterBowl() {
-    const { setBaseType, baseType, slots, removeIngredient } = useIngredientStore();
+    const { setBaseType, baseType, slots, removeIngredient, selectedBowl  } = useIngredientStore();
 
     const activeIngredients = Object.values(slots).filter(ingredient => ingredient !==null);
 
@@ -68,7 +68,9 @@ export function CenterBowl() {
 
             <div className="mt-6 text-center">
                 <p className="text-lg font-semibold">100 g / 1,99 €</p>
-                <p className="text-md">500 ml</p>
+                <p className="text-md">
+                    {selectedBowl ? selectedBowl.volume : 0} ml
+                </p>
             </div>
         </div>
     );
