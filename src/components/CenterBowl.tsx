@@ -71,7 +71,7 @@ export function CenterBowl() {
                     </div>
                 ) : (
                     <div className="flex flex-wrap gap-2 justify-center p-4">
-                        {activeIngredients.map((ingredient, idx) => (
+                        {activeIngredients.map((ingredient) => (
                             <div 
                                 key={ingredient.id}
                                 className="relative group"
